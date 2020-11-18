@@ -1,8 +1,21 @@
 import React from "react";
 import { v4 } from "uuid";
 import PropTypes from "prop-types";
+import Button from "react-bootstrap/button"
 
 function NewItemForm(props){
+
+  const formStyle = {
+    backgroundColor: 'rgba(52, 52, 52, alpha)',
+    position: 'absolute',
+    marginTop: 100,
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+    color: 'white'
+    
+  }
 
   function handleNewItemFormSubmission(event) {
     event.preventDefault();
@@ -11,24 +24,44 @@ function NewItemForm(props){
   
   return (
     <React.Fragment>
-      <form onSubmit = {handleNewItemFormSubmission}>
-        <input
-          type ="text"
-          name = "name"
-          placeholder = "Item Name" />
-        <textarea 
-          name = "description"
-          placeholder = "Description" />
-        <input
-          type = "number"
-          name = "quantity"
-          placeholder = "Quantity" />
-        <input
-          type = "number"
-          name = "price"
-          placeholder = "Price" />
-        <button type='submit'>Add Item</button>
-      </form>
+      
+      {/* <div className="card"> */}
+      <div style={formStyle}>
+        <div className="container">
+          <form onSubmit = {handleNewItemFormSubmission}>
+            <h3>Item Name</h3>
+            <input
+              type ="text"
+              name = "name"
+              placeholder = "..." 
+              required
+              />
+            <h3>Description</h3>
+            <textarea 
+              name = "description"
+              placeholder = "..."
+              required
+              />
+            <h3>Quantity</h3>
+            <input
+              type = "number"
+              name = "quantity"
+              placeholder = "..." 
+              required
+              />
+            <h3>Price</h3>
+            <input
+              type = "text"
+              name = "price"
+              placeholder = "..." 
+              required
+              />
+              
+            <Button variant="success" type='submit'>Add Item</Button>
+          </form>
+        </div>
+      </div>
+      {/* </div> */}
     </React.Fragment>
   );
 }
