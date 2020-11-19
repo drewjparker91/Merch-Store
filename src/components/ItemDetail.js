@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 function ItemDetail(props){
 
-  const { item } = props;
+  const { item, onClickingDelete } = props;
 
   const itemDetailStyle = {
     color: "white"
@@ -18,6 +18,7 @@ function ItemDetail(props){
           <h2>Item Name:{item.name}</h2>
           <h6>Description:{item.description}</h6>
           <h3>Price: ${item.price} - Quantity:{item.quantity}</h3>
+          <button onClick={() => onClickingDelete(item.id)}>Delete Item</button>
           <hr/>
         </div> 
       </React.Fragment>
@@ -26,7 +27,8 @@ function ItemDetail(props){
 }
 
 ItemDetail.propTypes = {
-  item: PropTypes.object
+  item: PropTypes.object,
+  onClickingDelete: PropTypes.func
 };
 
 export default ItemDetail;
