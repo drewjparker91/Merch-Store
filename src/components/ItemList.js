@@ -28,15 +28,18 @@ function ItemList(props) {
       <h1 style={topStyle}>Hardwood Classic Jerseys</h1>
       <hr/>
       <Row>
-        {props.itemList.map((item, index) =>
+        {props.itemList.map((item) =>
           <Col xs ={4}>       
             <div className="card" style={cardPadding}> 
               <div className="container">       
                 <Item
+                whenItemClicked={props.onItemSelection}
                 name={item.name}
                 description={item.description}
                 price={item.price}
                 quantity={item.quantity}
+                id={item.id}
+                key={item.id}
                 />
                 <Button variant="danger">Add To Cart</Button>
               </div>
@@ -49,7 +52,8 @@ function ItemList(props) {
 }
 
 ItemList.propTypes = {
-  itemList: PropTypes.array
+  itemList: PropTypes.array,
+  onItemSelection: PropTypes.func
 };
 
 

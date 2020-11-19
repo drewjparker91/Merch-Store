@@ -4,6 +4,7 @@ import ItemList from './ItemList';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/button';
+import ItemDetail from './ItemDetail';
 
 class ItemControl extends React.Component {
   
@@ -11,14 +12,22 @@ class ItemControl extends React.Component {
     super(props)
     this.state = {
       formVisibleOnPage: false,
-      masterItemList:[]
+      masterItemList:[],
+      selectedItem: null
     };
   }
-
+  
   handleClick = () => {
-    this.setState(prevState => ({
-      formVisibleOnPage: !prevState.formVisibleOnPage
-    }));
+    if (this.state.selectedItem != null) {
+      this.setState ({
+        formVisibleOnPage: false,
+        selectedItem: null
+      });
+    } else {
+      this.setState(prevState => ({
+        formVisibleOnPage: !prevState.formVisibleOnPage
+      }));
+    }
   }
 
   handleAddingNewItemToList = (newItem) => {
@@ -29,14 +38,23 @@ class ItemControl extends React.Component {
     });
   }
 
+  handleChangingSelectedItem = (id) => {
+    const selectedItem = this.state.masterItemList.filter(item => item.id === id)[0];
+    this.setState({selectedItem: selectedItem});
+  }
+
   render(){
     let currentlyVisibleState = null;
     let buttonText = null;
-    if (this.state.formVisibleOnPage) {
+
+    if (this.state.selectedItem != null){
+      currentlyVisibleState = <ItemDetail item = {this.state.selectedItem} />
+      buttonText = "View Item List"
+    } else if (this.state.formVisibleOnPage) {
       currentlyVisibleState = <NewItemForm onNewItemCreation={this.handleAddingNewItemToList} />;
       buttonText = "View Item List";
     } else {
-      currentlyVisibleState = <ItemList itemList={this.state.masterItemList}/>;
+      currentlyVisibleState = <ItemList itemList={this.state.masterItemList} onItemSelection={this.handleChangingSelectedItem} />;
       <Row>
         <Col xs= {3}>
         <ItemList />
