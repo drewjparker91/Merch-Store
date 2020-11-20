@@ -3,7 +3,7 @@ import Item from "./Item";
 import PropTypes from "prop-types";
 import Row from "react-bootstrap/row";
 import Col from "react-bootstrap/col";
-import Button from "react-bootstrap/button";
+//import Button from "react-bootstrap/button";
 
 
 function ItemList(props) {
@@ -41,7 +41,7 @@ function ItemList(props) {
                 id={item.id}
                 key={item.id}
                 />
-                <Button variant="danger">Add To Cart</Button>
+               
               </div>
             </div>
         </Col>
@@ -54,6 +54,7 @@ function ItemList(props) {
 ItemList.propTypes = {
   itemList: PropTypes.array,
   onItemSelection: PropTypes.func
+  
 };
 
 

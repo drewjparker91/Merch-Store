@@ -1,5 +1,18 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Button from "react-bootstrap/button";
+
+const formStyle = {
+  backgroundColor: 'rgba(52, 52, 52, alpha)',
+  position: 'absolute',
+  marginTop: 100,
+  top: 0,
+  bottom: 0,
+  left: 0,
+  right: 0,
+  color: 'white'
+  
+}
 
 function ReusableForm(props) {
   return (
@@ -34,8 +47,8 @@ function ReusableForm(props) {
               placeholder = "..." 
               required
               />
-              
-            <Button variant="success" type='submit'>{props.buttonText}</Button>
+              <br/>
+            <Button variant="danger" type='submit'>{props.buttonText}</Button>
           </form>
         </div>
       </div>
@@ -44,8 +57,8 @@ function ReusableForm(props) {
 }
 
 ReusableForm.propTypes = {
-  formSubmissionHandler: PropTypes.func
+  formSubmissionHandler: PropTypes.func,
   buttonText: PropTypes.string
 };
 
-export default ReusableForm;
+export default ReusableForm
